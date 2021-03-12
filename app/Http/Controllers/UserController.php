@@ -5,15 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Resources\UsersResource;
 use App\User;
 use Illuminate\Http\Request;
-use Auth;
-
+// use Auth;
+use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     public function authenticate(Request $request)
     {
         $credentials = $request->only('email', 'password');
         try {
-            if (!$token = auth('web')->attempt($credentials)) {
+            if (!$token = Auth::attempt($credentials)) {
                 return response()->json(['error' => 'invalid_credentials'], 400);
             }
         } catch (JWTException $e) {
