@@ -20,7 +20,7 @@ class UserController extends Controller
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
 
-        return response()->json(['token' => compact('token'), 'user' => new UsersResource(Auth::user())]);
+        return response()->json(['token' =>$token, 'user' => new UsersResource(Auth::user())]);
     }
 
     public function show()
